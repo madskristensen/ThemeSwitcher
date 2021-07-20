@@ -88,6 +88,7 @@ namespace ThemeSwitcher
 
             System.IO.File.WriteAllText(path, settingsFile);
 
+            // This command doesn't execute in VS 2019
             await KnownCommands.Tools_ImportandExportSettings.ExecuteAsync($@"/import:""{path}""");
             
             foreach (Theme theme in Themes.Value)
