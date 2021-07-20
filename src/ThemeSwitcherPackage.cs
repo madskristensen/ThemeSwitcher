@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.Threading;
 using Community.VisualStudio.Toolkit;
+using Community.VisualStudio.Toolkit.Shared.ExtensionMethods;
 using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
@@ -17,8 +18,7 @@ namespace ThemeSwitcher
     {
         protected override async Task InitializeAsync(CancellationToken cancellationToken, IProgress<ServiceProgressData> progress)
         {
-            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            await MyCommand.InitializeAsync(this);
+            await this.RegisterCommandsAsync();
         }
     }
 }

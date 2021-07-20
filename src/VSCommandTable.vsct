@@ -14,6 +14,9 @@
       <Group guid="ThemeSwitcher" id="ThemeListGroup" priority="0x0600">
         <Parent guid="ThemeSwitcher" id="ThemeMenu"/>
       </Group>
+      <Group guid="ThemeSwitcher" id="ThemeSettings" priority="0x0700">
+        <Parent guid="ThemeSwitcher" id="ThemeMenu"/>
+      </Group>
     </Groups>
 
     <Menus>
@@ -31,11 +34,22 @@
       <Button guid="ThemeSwitcher" id="FirstTheme" priority="0x0100" type="Button">
         <Parent guid="ThemeSwitcher" id="ThemeListGroup" />
         <CommandFlag>DynamicItemStart</CommandFlag>
+        <CommandFlag>DynamicVisibility</CommandFlag>
         <CommandFlag>TextChanges</CommandFlag>
         <CommandFlag>DefaultDisabled</CommandFlag>
         <Strings>
           <ButtonText>Loading...</ButtonText>
           <LocCanonicalName>.ThemeSwitcher.FirstTheme</LocCanonicalName>
+        </Strings>
+      </Button>
+
+      <Button guid="ThemeSwitcher" id="GetMoreThemes" priority="0x0100" type="Button">
+        <Parent guid="ThemeSwitcher" id="ThemeSettings" />
+        <Icon guid="ImageCatalogGuid" id="Download"/>
+        <CommandFlag>IconIsMoniker</CommandFlag>
+        <Strings>
+          <ButtonText>Get More Themes</ButtonText>
+          <LocCanonicalName>.ThemeSwitcher.GetMoreThemes</LocCanonicalName>
         </Strings>
       </Button>
     </Buttons>
@@ -46,7 +60,9 @@
       <IDSymbol name="ThemeGroup" value="0x0001" />
       <IDSymbol name="ThemeMenu" value="0x0002" />
       <IDSymbol name="ThemeListGroup" value="0x0003" />
-      <IDSymbol name="FirstTheme" value="0x0100" />
+      <IDSymbol name="ThemeSettings" value="0x0004" />
+      <IDSymbol name="GetMoreThemes" value="0x0100" />
+      <IDSymbol name="FirstTheme" value="0x0101" />
     </GuidSymbol>
   </Symbols>
 </CommandTable>

@@ -8,36 +8,38 @@ using Microsoft.VisualStudio.Shell;
 namespace ThemeSwitcher
 {
     [Command(PackageIds.FirstTheme)]
-    internal sealed class MyCommand : BaseCommand<MyCommand>
+    internal sealed class SelectThemeCommand : BaseCommand<SelectThemeCommand>
     {
         private static readonly List<OleMenuCommand> _commands = new();
         protected override void BeforeQueryStatus(EventArgs e)
         {
-            Command.Enabled = true;
+            if (_commands.Any())
+            {
+                return;
+            }
 
             IEnumerable<Theme> themes = ThemeStore.Themes.Value;
             OleMenuCommandService mcs = Package.GetService<IMenuCommandService, OleMenuCommandService>();
             var i = 1;
 
             Theme firstTheme = themes.First();
+            Command.Enabled = Command.Visible = true;
             Command.Text = firstTheme.Name;
             Command.Checked = firstTheme.IsActive;
             Command.Properties["guid"] = firstTheme.Guid;
+            _commands.Add(Command);
 
             foreach (Theme theme in themes.Skip(1))
             {
                 CommandID cmdId = new(PackageGuids.ThemeSwitcher, PackageIds.FirstTheme + i++);
 
-                if (!_commands.Any(c => c.CommandID.ID == cmdId.ID))
-                {
-                    OleMenuCommand command = new(Execute, cmdId);
-                    command.Properties["guid"] = theme.Guid;
-                    command.Text = theme.Name;
-                    command.Checked = theme.IsActive;
-                    mcs.AddCommand(command);
+                OleMenuCommand command = new(Execute, cmdId);
+                command.Properties["guid"] = theme.Guid;
+                command.Text = theme.Name;
+                command.Checked = theme.IsActive;
+                mcs.AddCommand(command);
 
-                    _commands.Add(command);
-                }
+                _commands.Add(command);
             }
         }
 

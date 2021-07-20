@@ -23,6 +23,8 @@ namespace ThemeSwitcher
         public const int ThemeGroup = 0x0001;
         public const int ThemeMenu = 0x0002;
         public const int ThemeListGroup = 0x0003;
-        public const int FirstTheme = 0x0100;
+        public const int ThemeSettings = 0x0004;
+        public const int GetMoreThemes = 0x0100;
+        public const int FirstTheme = 0x0101;
     }
 }
