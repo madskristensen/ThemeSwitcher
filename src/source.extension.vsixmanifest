@@ -4,6 +4,8 @@
         <Identity Id="ThemeSwitcher.26e69bc4-ab86-469a-ac8e-f9f16e77ff7e" Version="1.0" Language="en-US" Publisher="Mads Kristensen" />
         <DisplayName>Theme Switcher</DisplayName>
         <Description xml:space="preserve">Makes it easy to switch between any installed theme by exposing them in a dynamic menu</Description>
+        <MoreInfo>https://github.com/madskristensen/ThemeSwitcher</MoreInfo>
+        <License>Resources\LICENSE</License>
         <Icon>Resources\Icon.png</Icon>
         <PreviewImage>Resources\Icon.png</PreviewImage>
     </Metadata>

@@ -1,6 +1,6 @@
 # Code Tours VS
 
-[![Build status](https://ci.appveyor.com/api/projects/status/j8mx6l6c97yemm2t?svg=true)](https://ci.appveyor.com/project/madskristensen/codetourvs)
+[![Build status](https://ci.appveyor.com/api/projects/status/g80pbrqecrqu1rsc?svg=true)](https://ci.appveyor.com/project/madskristensen/themeswitcher)
 
 Code Tours shows guided tours through any source code base. They are easy to create and easy to use.
 
