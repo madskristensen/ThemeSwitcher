@@ -13,7 +13,10 @@ namespace ThemeSwitcher
 {
     public static class ThemeStore
     {
+        public static Guid highContrast = new("{a5c004b4-2d4b-494e-bf01-45fc492522c7}");
+        public static Guid additionalContrast = new("{ce94d289-8481-498b-8ca9-9b6191a315b9}");
         public static Lazy<IEnumerable<Theme>> Themes = new(GetInstalledThemes);
+
         private static IEnumerable<Theme> GetInstalledThemes()
         {
             ThreadHelper.ThrowIfNotOnUIThread();
@@ -24,20 +27,20 @@ namespace ThemeSwitcher
             {
                 IEnumerable<string> guids = store.GetSubCollectionNames("Themes");
 
-                foreach (var guid in guids)
+                foreach (Guid guid in guids.Select(g => new Guid(g)).Where(g => g != highContrast))
                 {
-                    var collection = $@"Themes\{guid}";
+                    var collection = $@"Themes\{{{guid}}}";
 
                     if (store.PropertyExists(collection, ""))
                     {
                         var name = store.GetString(collection, "");
 
-                        if (name == "Additional Contrast")
+                        if (guid == additionalContrast)
                         {
                             name = "Blue (Extra Contrast)";
                         }
 
-                        themes.Add(new Theme(name, new Guid(guid)));
+                        themes.Add(new Theme(name, guid));
                     }
                 }
             }
@@ -88,9 +91,8 @@ namespace ThemeSwitcher
 
             System.IO.File.WriteAllText(path, settingsFile);
 
-            // This command doesn't execute in VS 2019
             await KnownCommands.Tools_ImportandExportSettings.ExecuteAsync($@"/import:""{path}""");
-            
+
             foreach (Theme theme in Themes.Value)
             {
                 theme.IsActive = false;
@@ -103,7 +105,7 @@ namespace ThemeSwitcher
         }
 
         public const string _vsSettings = @"<UserSettings>
-    <ApplicationIdentity version=""17.0""/>
+    <ApplicationIdentity version=""16.0""/>
     <ToolsOptions>
         <ToolsOptionsCategory name=""Environment"" RegisteredName=""Environment""/>
     </ToolsOptions>
