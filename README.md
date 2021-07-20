@@ -1,10 +1,10 @@
-# Code Tours VS
+# Theme Switcher
 
 [![Build status](https://ci.appveyor.com/api/projects/status/g80pbrqecrqu1rsc?svg=true)](https://ci.appveyor.com/project/madskristensen/themeswitcher)
 
-Code Tours shows guided tours through any source code base. They are easy to create and easy to use.
+Makes it easy to switch between any installed theme by exposing them in a dynamic menu
 
-Download this extension from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CodeTours)
+Download this extension from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ThemeSwitcher)
 or get the [CI build](https://www.vsixgallery.com/extension/ThemeSwitcher.26e69bc4-ab86-469a-ac8e-f9f16e77ff7e).
 
 -----------------------------------------
