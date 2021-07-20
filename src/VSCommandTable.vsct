@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+  <Include href="KnownImageIds.vsct"/>
+  <Include href="VSGlobals.vsct"/>
+
+  <Commands package="ThemeSwitcher">
+    <Groups>
+      <Group guid="ThemeSwitcher" id="ThemeGroup" priority="0x0600">
+        <Parent guid="VSMainMenu" id="Tools"/>
+      </Group>
+      <Group guid="ThemeSwitcher" id="ThemeListGroup" priority="0x0600">
+        <Parent guid="ThemeSwitcher" id="ThemeMenu"/>
+      </Group>
+    </Groups>
+
+    <Menus>
+      <Menu guid="ThemeSwitcher" id="ThemeMenu" priority="100" type="Menu">
+        <Parent guid="ThemeSwitcher" id="ThemeGroup"/>
+        <Strings>
+          <ButtonText>Themes</ButtonText>
+        </Strings>
+      </Menu>
+    </Menus>
+
+    <!--This section defines the elements the user can interact with, like a menu command or a button
+        or combo box in a toolbar. -->
+    <Buttons>
+      <Button guid="ThemeSwitcher" id="FirstTheme" priority="0x0100" type="Button">
+        <Parent guid="ThemeSwitcher" id="ThemeListGroup" />
+        <CommandFlag>DynamicItemStart</CommandFlag>
+        <CommandFlag>TextChanges</CommandFlag>
+        <CommandFlag>DefaultDisabled</CommandFlag>
+        <Strings>
+          <ButtonText>Loading...</ButtonText>
+          <LocCanonicalName>.ThemeSwitcher.FirstTheme</LocCanonicalName>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="ThemeSwitcher" value="{3ae3415b-d5b6-4f59-857a-ea156e70ac71}">
+      <IDSymbol name="ThemeGroup" value="0x0001" />
+      <IDSymbol name="ThemeMenu" value="0x0002" />
+      <IDSymbol name="ThemeListGroup" value="0x0003" />
+      <IDSymbol name="FirstTheme" value="0x0100" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
