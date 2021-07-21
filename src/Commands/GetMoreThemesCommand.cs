@@ -1,14 +1,26 @@
-﻿using System;
+﻿using System.Diagnostics;
 using Community.VisualStudio.Toolkit;
+using Microsoft.VisualStudio.Shell;
 
 namespace ThemeSwitcher
 {
     [Command(PackageIds.GetMoreThemes)]
     internal sealed class GetMoreThemesCommand : BaseCommand<GetMoreThemesCommand>
     {
-        protected override void Execute(object sender, EventArgs e)
+        private const string _url = "https://marketplace.visualstudio.com/search?term=theme&target=VS&vsVersion=";
+
+        protected override async System.Threading.Tasks.Task ExecuteAsync(OleMenuCmdEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://marketplace.visualstudio.com/search?target=VS&category=Tools&vsVersion=&subCategory=Themes&sortBy=Installs");
+            EnvDTE80.DTE2 dte = await VS.GetServiceAsync<EnvDTE.DTE, EnvDTE80.DTE2>();
+
+            var vs = dte.Version switch
+            {
+                "16.0" => "vs2019",
+                "17.0" => "vs2022",
+                _ => ""
+            };
+
+            Process.Start(_url + vs);
         }
     }
 }

@@ -15,32 +15,31 @@ namespace ThemeSwitcher
         {
             if (_commands.Any())
             {
-                return;
+                return; // The commands were already set up
             }
 
             IEnumerable<Theme> themes = ThemeStore.Themes.Value;
             OleMenuCommandService mcs = Package.GetService<IMenuCommandService, OleMenuCommandService>();
             var i = 1;
 
-            Theme firstTheme = themes.First();
-            Command.Enabled = Command.Visible = true;
-            Command.Text = firstTheme.Name;
-            Command.Checked = firstTheme.IsActive;
-            Command.Properties["guid"] = firstTheme.Guid;
-            _commands.Add(Command);
+            SetupCommand(Command, themes.First());
 
             foreach (Theme theme in themes.Skip(1))
             {
                 CommandID cmdId = new(PackageGuids.ThemeSwitcher, PackageIds.FirstTheme + i++);
-
                 OleMenuCommand command = new(Execute, cmdId);
-                command.Properties["guid"] = theme.Guid;
-                command.Text = theme.Name;
-                command.Checked = theme.IsActive;
+                SetupCommand(command, theme);
                 mcs.AddCommand(command);
-
-                _commands.Add(command);
             }
+        }
+
+        private void SetupCommand(OleMenuCommand command, Theme theme)
+        {
+            command.Enabled = command.Visible = true;
+            command.Text = theme.Name;
+            command.Checked = theme.IsActive;
+            command.Properties["guid"] = theme.Guid;
+            _commands.Add(command);
         }
 
         protected override void Execute(object sender, EventArgs e)
