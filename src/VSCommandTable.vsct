@@ -8,9 +8,6 @@
 
   <Commands package="ThemeSwitcher">
     <Groups>
-      <Group guid="ThemeSwitcher" id="ThemeGroup" priority="0x0600">
-        <Parent guid="VSMainMenu" id="Tools"/>
-      </Group>
       <Group guid="ThemeSwitcher" id="ThemeListGroup" priority="0x0600">
         <Parent guid="ThemeSwitcher" id="ThemeMenu"/>
       </Group>
@@ -20,8 +17,8 @@
     </Groups>
 
     <Menus>
-      <Menu guid="ThemeSwitcher" id="ThemeMenu" priority="100" type="Menu">
-        <Parent guid="ThemeSwitcher" id="ThemeGroup"/>
+      <Menu guid="ThemeSwitcher" id="ThemeMenu" priority="0x0250" type="Menu">
+        <Parent guid="VSMainMenu" id="Tools.OptionsGroup"/>
         <Strings>
           <ButtonText>Themes</ButtonText>
         </Strings>
@@ -57,10 +54,9 @@
 
   <Symbols>
     <GuidSymbol name="ThemeSwitcher" value="{3ae3415b-d5b6-4f59-857a-ea156e70ac71}">
-      <IDSymbol name="ThemeGroup" value="0x0001" />
-      <IDSymbol name="ThemeMenu" value="0x0002" />
-      <IDSymbol name="ThemeListGroup" value="0x0003" />
-      <IDSymbol name="ThemeSettings" value="0x0004" />
+      <IDSymbol name="ThemeMenu" value="0x0001" />
+      <IDSymbol name="ThemeListGroup" value="0x0002" />
+      <IDSymbol name="ThemeSettings" value="0x0003" />
       <IDSymbol name="GetMoreThemes" value="0x0100" />
       <IDSymbol name="FirstTheme" value="0x0101" />
     </GuidSymbol>
